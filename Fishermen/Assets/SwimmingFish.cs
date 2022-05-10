@@ -21,17 +21,23 @@ public class SwimmingFish : MonoBehaviour
 
         this.transform.position = new Vector2(randomPointToMoveX, randomPointToMoveY);
 
-        currentXPosition = randomPointToMoveX;
+        currentXPosition = this.transform.position.x;
+
+        if (currentXPosition < randomPointToMoveX)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     void Update()
     {
         if (!randomTimerIsActive) StartCoroutine(NewPoint());
 
-        if (randomTimerIsActive)
-        {
-            this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(randomPointToMoveX, randomPointToMoveY), speed * Time.deltaTime);
-        }
+        this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(randomPointToMoveX, randomPointToMoveY), speed * Time.deltaTime);
     }
 
     IEnumerator NewPoint()
@@ -42,6 +48,8 @@ public class SwimmingFish : MonoBehaviour
         randomPointToMoveX = Random.Range(-8f, 8f);
         randomPointToMoveY = Random.Range(-4.5f, -1f);
 
+        currentXPosition = this.transform.position.x;
+
         if (currentXPosition < randomPointToMoveX)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
@@ -51,7 +59,7 @@ public class SwimmingFish : MonoBehaviour
             this.GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        currentXPosition = randomPointToMoveX;
+
 
         speed = Random.Range(1f, 5f);
 

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class FishingArea : MonoBehaviour
 {
+    // fonction qui permet d'insigner le prix d'une zone
     public void PriceToPay(int price)
     {
         EconomySystem.instance.RemoveCoins(price);
