@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 7fc6997087d1a62488d6378fc930accf
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Rabbid Highway Sign IV
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3b09716887374d74a8792297d66e1b82, type: 3}
+  - {fileID: 12800000, guid: 0218103942dd3bf4d823b04cfe81a7f5, type: 3}
+  - {fileID: 12800000, guid: c39573b422f40004fa28a8cdf6fee531, type: 3}
+  - {fileID: 12800000, guid: 48d92c7583251e349961c03efdc276bd, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
