@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class FishingGame : MonoBehaviour
 {
+    public List<FishData> FishesCanBeCaughtInThisArea;
+
     public Slider fishSlider;
     public Slider fishingRodSlider;
 
@@ -26,7 +28,7 @@ public class FishingGame : MonoBehaviour
 
         fishSlider.GetComponent<Slider>().value = Mathf.MoveTowards(fishSlider.GetComponent<Slider>().value, fishSlider.GetComponent<Slider>().value + randomPosFish, 0.6f * Time.deltaTime);
     
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
         {
             fishingRodSlider.GetComponent<Slider>().value += 0.005f;
         }

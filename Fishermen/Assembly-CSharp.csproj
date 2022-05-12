@@ -60,8 +60,9 @@
     <Compile Include="Assets\Scripts\FishingGame.cs" />
     <Compile Include="Assets\Scripts\GUINaviguation.cs" />
     <Compile Include="Assets\Scripts\EconomySystem.cs" />
-    <Compile Include="Assets\SwimmingFish.cs" />
+    <Compile Include="Assets\Scripts\SwimmingFish.cs" />
     <Compile Include="Assets\Scripts\FishData.cs" />
+    <Compile Include="Assets\Scripts\InventoryFishes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

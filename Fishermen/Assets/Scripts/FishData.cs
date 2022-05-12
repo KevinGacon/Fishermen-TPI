@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishData : MonoBehaviour
+[CreateAssetMenu(fileName = "FishData", menuName = "New Fish")]
+public class FishData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Sprite image;
+    public string commonName;
+    public string latinName;
+    public float minSize;
+    public float maxSize;
+    public float commonSize;
+    public float minSizeRequired;
+    public int ageMax;
+    public int minAgeRequired;
+    public int price;
 }
