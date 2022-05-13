@@ -6,7 +6,8 @@ using TMPro;
 public class EconomySystem : MonoBehaviour
 {
     public TMP_Text currentCashDisplayText;
-    public static int currentCash = 500;
+    public static int currentCash;
+    public int seeCurrentCash;
 
     public int maxCash = 999999;
 
@@ -62,6 +63,7 @@ public class EconomySystem : MonoBehaviour
     //fonction qui retire de l'argent
     public void RemoveCoins(int count)
     {
+
         if (count <= currentCash)
         {
             currentCash -= count;
@@ -80,5 +82,11 @@ public class EconomySystem : MonoBehaviour
         {
             currentCashDisplayText.text = currentCash.ToString() + " $";
         }
+    }
+
+    public void SeeCurrentCash()
+    {
+        seeCurrentCash = currentCash;
+
     }
 }

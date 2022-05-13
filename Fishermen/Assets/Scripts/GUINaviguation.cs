@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GUINaviguation : MonoBehaviour
 {
-    private bool isOpen=false;
+    public bool isOpen=false;
 
     public GameObject inventoryInterface;
 
@@ -16,7 +16,7 @@ public class GUINaviguation : MonoBehaviour
 
     private void Update()
     {
-        //if ()
+        
     }
 
     //fonction qui permet de retourner dans la zone de séléction de zone

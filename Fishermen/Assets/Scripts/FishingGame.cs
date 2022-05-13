@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FishingGame : MonoBehaviour
 {
     public List<FishData> FishesCanBeCaughtInThisArea;
+    public GameObject whatIsFish;
 
     public Slider fishSlider;
     public Slider fishingRodSlider;
@@ -18,36 +19,46 @@ public class FishingGame : MonoBehaviour
     public GameObject startFishingButton;
 
     public GameObject returnButton;
+    public GameObject inventoryButton;
 
     private bool randomTimerIsActive = false;
     float randomPosFish;
 
+    bool gameIsLaunch;
+
     void Update()
     {
-        //trouve un nouveau point pour l'icon poisson
-        if (!randomTimerIsActive) StartCoroutine(NewPoint());
-        //déplace l'icone poisson vers ce nouveau point
-        fishSlider.GetComponent<Slider>().value = Mathf.MoveTowards(fishSlider.GetComponent<Slider>().value, fishSlider.GetComponent<Slider>().value + randomPosFish, 0.6f * Time.deltaTime);
+        if (gameIsLaunch)
+        {
+            //trouve un nouveau point pour l'icon poisson
+            if (!randomTimerIsActive) StartCoroutine(NewPoint());
+            //déplace l'icone poisson vers ce nouveau point
+            fishSlider.GetComponent<Slider>().value = Mathf.MoveTowards(fishSlider.GetComponent<Slider>().value, fishSlider.GetComponent<Slider>().value + randomPosFish, 0.6f * Time.deltaTime);
     
-        //lorsque qu'on appui espace ou le click guauche de la souris notre icon monte
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
-        {
-            fishingRodSlider.GetComponent<Slider>().value += 0.005f;
-        }
+            //lorsque qu'on appui espace ou le click guauche de la souris notre icon monte
+            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
+            {
+                fishingRodSlider.GetComponent<Slider>().value += 0.005f;
+            }
 
-        //fais descendre la barre progressivement 
-        fishingRodSlider.GetComponent<Slider>().value = Mathf.MoveTowards(fishingRodSlider.GetComponent<Slider>().value, 0, 0.4f * Time.deltaTime);
+            //fais descendre la barre progressivement 
+            fishingRodSlider.GetComponent<Slider>().value = Mathf.MoveTowards(fishingRodSlider.GetComponent<Slider>().value, 0, 0.4f * Time.deltaTime);
 
-        //verifie si le notre icone est sur l'icone du poisson
-        OnTriggerVerif();
-
-
-        //verrifie si le jaunge de complete est à 100%
-        if (completeFishingGauge.GetComponent<Slider>().value == 1)
-        {
-            stopFishing();
+            //verifie si le notre icone est sur l'icone du poisson
+            OnTriggerVerif();
 
 
+            //verrifie si le jauge de complete est à 100%
+            if (completeFishingGauge.GetComponent<Slider>().value == 1 || Input.GetKey(KeyCode.O))
+            {
+                Destroy(GameObject.FindGameObjectWithTag("FishSwimming"));
+
+                stopFishing();
+
+                GameObject thisFish = Instantiate(whatIsFish, GameObject.FindGameObjectWithTag("myFishList").transform) as GameObject;
+                int randomFish = Random.Range(0, FishesCanBeCaughtInThisArea.Count);
+                thisFish.GetComponent<myFishSpecificData>().FishData = FishesCanBeCaughtInThisArea[randomFish];
+            }
         }
     }
 
@@ -66,7 +77,6 @@ public class FishingGame : MonoBehaviour
     }
 
     //fonction qui verifie si notre icon est sur l'icone du poisson
-
     void OnTriggerVerif()
     {
         float fishingRodSliderValue = fishingRodSlider.GetComponent<Slider>().value;
@@ -87,9 +97,12 @@ public class FishingGame : MonoBehaviour
     // fonction qui affiche le HUD et met les valeur à 0
     public void startFishing()
     {
+        gameIsLaunch = true;
+
         startFishingButton.SetActive(false);
         fishingHUD.SetActive(true);
         returnButton.SetActive(false);
+        inventoryButton.SetActive(false);
 
         completeFishingGauge.GetComponent<Slider>().value = 0;
         fishingRodSlider.GetComponent<Slider>().value = 0;
@@ -99,10 +112,13 @@ public class FishingGame : MonoBehaviour
 
 
     //fonction qui arrete la fonctionnalité de pêche
-    void stopFishing()
+    public void stopFishing()
     {
+        gameIsLaunch = false;
+
         startFishingButton.SetActive(true);
         fishingHUD.SetActive(false);
         returnButton.SetActive(true);
+        inventoryButton.SetActive(true);
     }
 }
