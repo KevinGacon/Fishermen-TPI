@@ -24,22 +24,30 @@ public class FishingGame : MonoBehaviour
 
     void Update()
     {
+        //trouve un nouveau point pour l'icon poisson
         if (!randomTimerIsActive) StartCoroutine(NewPoint());
-
+        //déplace l'icone poisson vers ce nouveau point
         fishSlider.GetComponent<Slider>().value = Mathf.MoveTowards(fishSlider.GetComponent<Slider>().value, fishSlider.GetComponent<Slider>().value + randomPosFish, 0.6f * Time.deltaTime);
     
+        //lorsque qu'on appui espace ou le click guauche de la souris notre icon monte
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
         {
             fishingRodSlider.GetComponent<Slider>().value += 0.005f;
         }
 
+        //fais descendre la barre progressivement 
         fishingRodSlider.GetComponent<Slider>().value = Mathf.MoveTowards(fishingRodSlider.GetComponent<Slider>().value, 0, 0.4f * Time.deltaTime);
 
+        //verifie si le notre icone est sur l'icone du poisson
         OnTriggerVerif();
 
+
+        //verrifie si le jaunge de complete est à 100%
         if (completeFishingGauge.GetComponent<Slider>().value == 1)
         {
             stopFishing();
+
+
         }
     }
 
@@ -56,6 +64,8 @@ public class FishingGame : MonoBehaviour
 
         randomTimerIsActive = false;
     }
+
+    //fonction qui verifie si notre icon est sur l'icone du poisson
 
     void OnTriggerVerif()
     {
@@ -74,6 +84,7 @@ public class FishingGame : MonoBehaviour
         }
     }
 
+    // fonction qui affiche le HUD et met les valeur à 0
     public void startFishing()
     {
         startFishingButton.SetActive(false);
@@ -86,6 +97,8 @@ public class FishingGame : MonoBehaviour
         fishSlider.GetComponent<Slider>().value = 1;
     }    
 
+
+    //fonction qui arrete la fonctionnalité de pêche
     void stopFishing()
     {
         startFishingButton.SetActive(true);

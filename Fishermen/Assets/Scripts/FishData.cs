@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FishData", menuName = "New Fish")]
 public class FishData : ScriptableObject
 {
+    //scriptableobject d'un poisson
     public Sprite image;
     public string commonName;
     public string latinName;

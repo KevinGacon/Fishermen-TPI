@@ -25,9 +25,11 @@ public class EconomySystem : MonoBehaviour
 
     void Start()
     {
+        // met a jour l'affichage de l'argent au lancement du jeu
         UpdateCash();
     }
 
+    //Touche de debug pour ajouter ou retirer de l'argent
     void Update()
     {
         if (Input.GetKey(KeyCode.KeypadPlus))
@@ -41,6 +43,7 @@ public class EconomySystem : MonoBehaviour
         }
     }
 
+    //fonction qui ajoute de l'argent
     public void AddCoins(int count)
     {
         if (currentCash <= maxCash)
@@ -56,6 +59,7 @@ public class EconomySystem : MonoBehaviour
         }
     }
 
+    //fonction qui retire de l'argent
     public void RemoveCoins(int count)
     {
         if (count <= currentCash)
@@ -65,6 +69,7 @@ public class EconomySystem : MonoBehaviour
         }
     }
 
+    //fonction qui met à jour l'affichegae de l'argent
     void UpdateCash()
     {
         if (currentCash.ToString().Length > 3)

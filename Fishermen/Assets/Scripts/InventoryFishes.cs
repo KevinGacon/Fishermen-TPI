@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryFishes : MonoBehaviour
 {
@@ -24,9 +25,21 @@ public class InventoryFishes : MonoBehaviour
 
     public void UpdateInventory()
     {
+        //Supprime tous les elements présent dans l'inventaire
+        GameObject[] taggedObjectsToDelete = GameObject.FindGameObjectsWithTag("FishObjectInventory");
+
+        foreach (GameObject objectToDelete in taggedObjectsToDelete)
+        {
+            Destroy(objectToDelete);
+        }
+
+
+        //créer un objet fish dans l'inventaire avec tous les éléments qui doivent être affiché
         foreach (FishData afish in myFishes)
         {
-            GameObject thisDog = Instantiate(aFishPrefab, Parent.transform) as GameObject;
+            GameObject thisFish = Instantiate(aFishPrefab, Parent.transform) as GameObject;
+
+            thisFish.transform.GetChild(1).GetComponent<Image>().sprite = afish.image;
         }
     }
 }

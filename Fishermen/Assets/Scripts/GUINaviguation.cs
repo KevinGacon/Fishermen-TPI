@@ -40,6 +40,8 @@ public class GUINaviguation : MonoBehaviour
         }
     }
 
+    //fermer l'inventaire
+
     void CloseInventory()
     {
         isOpen = false;
