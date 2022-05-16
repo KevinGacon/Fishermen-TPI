@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Sardine
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 1617637d4e5c9eb46bcb56fd04b86e8c, type: 3}
-  commonName: Sardine
+  commonName: Sardines
   latinName: Sardina pilchardus
   minSize: 0
   maxSize: 0
   minSizeRequired: 11
   ageMax: 0
+  minAgeRequired: 0
+  price: 0

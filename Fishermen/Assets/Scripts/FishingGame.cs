@@ -26,6 +26,19 @@ public class FishingGame : MonoBehaviour
 
     bool gameIsLaunch;
 
+    public static FishingGame instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de FishingGame dans la scène");
+            return;
+        }
+
+        instance = this;
+    }
+
     void Update()
     {
         if (gameIsLaunch)
@@ -44,7 +57,7 @@ public class FishingGame : MonoBehaviour
             //fais descendre la barre progressivement 
             fishingRodSlider.GetComponent<Slider>().value = Mathf.MoveTowards(fishingRodSlider.GetComponent<Slider>().value, 0, 0.4f * Time.deltaTime);
 
-            //verifie si le notre icone est sur l'icone du poisson
+            //verifie si notre icone est sur l'icone du poisson
             OnTriggerVerif();
 
 
@@ -56,8 +69,6 @@ public class FishingGame : MonoBehaviour
                 stopFishing();
 
                 GameObject thisFish = Instantiate(whatIsFish, GameObject.FindGameObjectWithTag("myFishList").transform) as GameObject;
-                int randomFish = Random.Range(0, FishesCanBeCaughtInThisArea.Count);
-                thisFish.GetComponent<myFishSpecificData>().FishData = FishesCanBeCaughtInThisArea[randomFish];
             }
         }
     }

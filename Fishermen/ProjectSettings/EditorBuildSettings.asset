@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FishingArea 2.unity
     guid: 2f6e0e0b4805bcd4784d6842c058b592
+  - enabled: 1
+    path: Assets/Scenes/Market.unity
+    guid: 3a38d8c9e1f4d9a47b32a6459a5dd257
   m_configObjects: {}

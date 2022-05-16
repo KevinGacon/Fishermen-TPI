@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GUINaviguation : MonoBehaviour
 {
-    public bool isOpen=false;
+    private bool isOpen=false;
 
     public GameObject inventoryInterface;
 
@@ -19,10 +19,16 @@ public class GUINaviguation : MonoBehaviour
         
     }
 
-    //fonction qui permet de retourner dans la zone de séléction de zone
+    //fonction qui permet de retourner dans le menu de séléction de zones
     public void BringToSelectFishingArea()
     {
         SceneManager.LoadScene("MainGame");
+    }
+
+    // amène le joueur sur la scène du marché
+    public void GoToMarket()
+    {
+        SceneManager.LoadScene("Market");
     }
 
     //ouvrir l'inventaire

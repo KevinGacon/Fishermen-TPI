@@ -11,7 +11,6 @@ public class FishData : ScriptableObject
     public string latinName;
     public float minSize;
     public float maxSize;
-    public float commonSize;
     public float minSizeRequired;
     public int ageMax;
     public int minAgeRequired;
