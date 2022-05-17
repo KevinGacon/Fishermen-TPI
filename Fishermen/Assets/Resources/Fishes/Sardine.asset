@@ -20,4 +20,4 @@ MonoBehaviour:
   minSizeRequired: 11
   ageMax: 0
   minAgeRequired: 0
-  price: 0
+  price: 1000

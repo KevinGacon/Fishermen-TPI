@@ -22,6 +22,8 @@ public class SelectFish : MonoBehaviour
             this.transform.GetChild(4).GetComponent<TMP_Text>().color = Color.white;
 
             SellFishesSystem.instance.selectedFishToSell.Add(currentFish);
+
+            SellFishesSystem.instance.UpdatePriceToSellText(currentFish.GetComponent<myFishSpecificData>().FishData.price);
         }
         else if (isSelected)
         {
@@ -34,6 +36,8 @@ public class SelectFish : MonoBehaviour
             this.transform.GetChild(4).GetComponent<TMP_Text>().color = Color.black;
 
             SellFishesSystem.instance.selectedFishToSell.Remove(currentFish);
+
+            SellFishesSystem.instance.UpdatePriceToSellText(-currentFish.GetComponent<myFishSpecificData>().FishData.price);
         }
     }
 }

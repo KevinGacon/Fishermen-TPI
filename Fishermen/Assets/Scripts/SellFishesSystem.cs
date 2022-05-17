@@ -12,6 +12,9 @@ public class SellFishesSystem : MonoBehaviour
     public GameObject Parent;
     public GameObject aFishPrefab;
 
+    public int priceToSell = 0;
+    public TMP_Text priceToSellText;
+
     public static SellFishesSystem instance;
 
     private void Awake()
@@ -40,8 +43,30 @@ public class SellFishesSystem : MonoBehaviour
         }
     }
 
-    void SelectFishToSell()
-    { 
-        
+
+    public void UpdatePriceToSellText(int price)
+    {
+        priceToSell += price;
+
+        if (priceToSell.ToString().Length > 3)
+        {
+            priceToSellText.text = "Somme : " + priceToSell.ToString().Insert(priceToSell.ToString().Length - 3, "'") + " $";
+        }
+        else
+        {
+            priceToSellText.text = "Somme : " + priceToSell.ToString() + " $";
+        }
+    }
+
+    public void SellFishes()
+    {
+        foreach (GameObject fish in selectedFishToSell)
+        {
+            Destroy(fish);
+        }
+
+        EconomySystem.instance.AddCoins(priceToSell);
+
+        GUINaviguation.instance.GoToMarket();
     }
 }

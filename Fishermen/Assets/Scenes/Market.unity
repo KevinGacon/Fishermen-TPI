@@ -786,9 +786,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GUINaviguation, Assembly-CSharp
-        m_MethodName: GoToMarket
+      - m_Target: {fileID: 1454773500}
+        m_TargetAssemblyTypeName: SellFishesSystem, Assembly-CSharp
+        m_MethodName: SellFishes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1178,6 +1178,8 @@ MonoBehaviour:
   myFishes: []
   Parent: {fileID: 1038879653}
   aFishPrefab: {fileID: 739081797002917999, guid: 3eb9604f234f4d14aa2b9be80bc6cbf3, type: 3}
+  priceToSell: 0
+  priceToSellText: {fileID: 1630454755}
 --- !u!114 &1454773501
 MonoBehaviour:
   m_ObjectHideFlags: 0

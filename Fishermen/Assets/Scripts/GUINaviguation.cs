@@ -9,6 +9,20 @@ public class GUINaviguation : MonoBehaviour
 
     public GameObject inventoryInterface;
 
+
+    public static GUINaviguation instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de GUINaviguation dans la scène");
+            return;
+        }
+
+        instance = this;
+    }
+
     private void Start()
     {
         inventoryInterface.SetActive(false);
