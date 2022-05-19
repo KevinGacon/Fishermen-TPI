@@ -28,11 +28,6 @@ public class GUINaviguation : MonoBehaviour
         inventoryInterface.SetActive(false);
     }
 
-    private void Update()
-    {
-        
-    }
-
     //fonction qui permet de retourner dans le menu de séléction de zones
     public void BringToSelectFishingArea()
     {
@@ -61,7 +56,6 @@ public class GUINaviguation : MonoBehaviour
     }
 
     //fermer l'inventaire
-
     void CloseInventory()
     {
         isOpen = false;

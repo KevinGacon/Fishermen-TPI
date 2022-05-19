@@ -19,3 +19,5 @@ MonoBehaviour:
   maxSize: 0
   minSizeRequired: 115
   ageMax: 0
+  minAgeRequired: 0
+  price: 10000
