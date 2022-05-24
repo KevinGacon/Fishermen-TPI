@@ -53,24 +53,6 @@ public class FishingGame : MonoBehaviour
 
     void Update()
     {
-        //verrifie si le jauge de complete est à 100%
-        if (Input.GetKey(KeyCode.O))
-        {
-            Destroy(GameObject.FindGameObjectWithTag("FishSwimming"));
-
-            NumberOfFishes--;
-
-            if (NumberOfFishes <= 0)
-            {
-                startFishingButton.GetComponent<Button>().interactable = false;
-            }
-
-            stopFishing();
-
-            GameObject thisFish = Instantiate(whatIsFish, GameObject.FindGameObjectWithTag("myFishList").transform) as GameObject;
-
-        }
-
         if (gameIsLaunch)
         {
             //trouve un nouveau point pour l'icon poisson

@@ -15,9 +15,9 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 1617637d4e5c9eb46bcb56fd04b86e8c, type: 3}
   commonName: Sardines
   latinName: Sardina pilchardus
-  minSize: 0
-  maxSize: 1
+  minSize: 7
+  maxSize: 25
   minSizeRequired: 11
   ageMax: 0
   minAgeRequired: 0
-  price: 100
+  price: 6

@@ -15,9 +15,9 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 9b6826023068e14468aed890108c8bf0, type: 3}
   commonName: Anchois
   latinName: Engraulis encrasicolus
-  minSize: 2
+  minSize: 10
   maxSize: 20
   minSizeRequired: 12
   ageMax: 5
   minAgeRequired: 0
-  price: 50
+  price: 5

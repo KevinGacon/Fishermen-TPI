@@ -15,6 +15,10 @@ public class SellFishesSystem : MonoBehaviour
     public int priceToSell = 0;
     public TMP_Text priceToSellText;
 
+    public int fine = 0;
+    public TMP_Text fineText;
+    public GameObject fineMenu;
+
     public static SellFishesSystem instance;
 
     private void Awake()
@@ -26,6 +30,9 @@ public class SellFishesSystem : MonoBehaviour
         }
 
         instance = this;
+
+        //désactive l'affichage de l'amende
+        fineMenu.SetActive(false);
 
         //créer un objet fish dans l'inventaire avec tous les éléments qui doivent être affiché
         myFishes = GameObject.FindGameObjectsWithTag("myFish");
@@ -62,10 +69,37 @@ public class SellFishesSystem : MonoBehaviour
     {
         foreach (GameObject fish in selectedFishToSell)
         {
+            if (!fish.GetComponent<myFishSpecificData>().haveRequiredSize || !fish.GetComponent<myFishSpecificData>().haveRequiredAge || !fish.GetComponent<myFishSpecificData>().isFresh)
+            {
+                fine = fine + 1000;
+            }
+
             Destroy(fish);
         }
 
+        if (fine > 0)
+        {
+            //active l'affichage de l'amende
+            fineMenu.SetActive(true);
+
+            fineText.text = "Des poissons illégaux ont été vendu. Vous recevez une amende de " + fine + " $ .";
+        }
+        else
+        {
         EconomySystem.instance.AddCoins(priceToSell);
+
+        GUINaviguation.instance.GoToMarket();
+        }
+    }
+
+    public void CloseFineMenu()
+    {
+        //désactive l'affichage de l'amende
+        fineMenu.SetActive(false);
+
+        EconomySystem.instance.AddCoins(priceToSell);
+
+        EconomySystem.instance.RemoveCoins(fine);
 
         GUINaviguation.instance.GoToMarket();
     }

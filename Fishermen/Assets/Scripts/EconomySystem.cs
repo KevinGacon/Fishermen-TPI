@@ -63,11 +63,14 @@ public class EconomySystem : MonoBehaviour
     //fonction qui retire de l'argent
     public void RemoveCoins(int count)
     {
-
         if (count <= currentCash)
         {
             currentCash -= count;
             UpdateCash();
+        }
+        else
+        {
+            currentCash = 0;
         }
     }
 
