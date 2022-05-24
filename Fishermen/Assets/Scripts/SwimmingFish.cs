@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SwimmingFish : MonoBehaviour
 {
+
+
     public float speed;
 
     private bool randomTimerIsActive = false;

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GUINaviguation : MonoBehaviour
 {
-    private bool isOpen=false;
+    public bool isOpen=false;
 
     public GameObject inventoryInterface;
 

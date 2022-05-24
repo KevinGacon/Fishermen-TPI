@@ -53,6 +53,24 @@ public class FishingGame : MonoBehaviour
 
     void Update()
     {
+        //verrifie si le jauge de complete est à 100%
+        if (Input.GetKey(KeyCode.O))
+        {
+            Destroy(GameObject.FindGameObjectWithTag("FishSwimming"));
+
+            NumberOfFishes--;
+
+            if (NumberOfFishes <= 0)
+            {
+                startFishingButton.GetComponent<Button>().interactable = false;
+            }
+
+            stopFishing();
+
+            GameObject thisFish = Instantiate(whatIsFish, GameObject.FindGameObjectWithTag("myFishList").transform) as GameObject;
+
+        }
+
         if (gameIsLaunch)
         {
             //trouve un nouveau point pour l'icon poisson
@@ -60,16 +78,16 @@ public class FishingGame : MonoBehaviour
             //déplace l'icone poisson vers ce nouveau point
             fishSlider.GetComponent<Slider>().value = Mathf.MoveTowards(fishSlider.GetComponent<Slider>().value, fishSlider.GetComponent<Slider>().value + randomPosFish, 0.6f * Time.deltaTime);
 
-            // fais descendre la barre de loose progressivement
+            //fais descendre la barre de loose progressivement
             loosingFishingGauge.GetComponent<Slider>().value = Mathf.MoveTowards(loosingFishingGauge.GetComponent<Slider>().value, 0, 0.02f * Time.deltaTime);
 
-            //verrifie si le jauge de loose est à 0
+            //verifie si le jauge de loose est à 0
             if (loosingFishingGauge.GetComponent<Slider>().value == 0)
             {
                 stopFishing();
             }
 
-            //lorsque qu'on appui espace ou le click guauche de la souris notre icon monte
+            //lorsqu'on appui sur espace ou click guauche de la souris notre icon monte
             if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
             {
                 fishingRodSlider.GetComponent<Slider>().value += 0.005f;
@@ -102,6 +120,7 @@ public class FishingGame : MonoBehaviour
         }
     }
 
+    // trouve un nouveau point
     IEnumerator NewPoint()
     {
         randomTimerIsActive = true;

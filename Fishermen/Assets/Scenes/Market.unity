@@ -1717,7 +1717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4244729114752957174, guid: 3eb9604f234f4d14aa2b9be80bc6cbf3, type: 3}
       propertyPath: m_text
-      value: Prix/Kg
+      value: Prix
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eb9604f234f4d14aa2b9be80bc6cbf3, type: 3}

@@ -11,6 +11,11 @@ public class InventoryFishes : MonoBehaviour
     public GameObject Parent;
     public GameObject aFishPrefab;
 
+    public GameObject selectedFish;
+
+    public GameObject infoFishText;
+    public GameObject releaseButton;
+
     public static InventoryFishes instance;
 
     private void Awake()
@@ -26,6 +31,9 @@ public class InventoryFishes : MonoBehaviour
 
     public void UpdateInventory()
     {
+        releaseButton.SetActive(false);
+        infoFishText.SetActive(false);
+
         //Supprime tous les elements présent dans l'inventaire
         GameObject[] taggedObjectsToDelete = GameObject.FindGameObjectsWithTag("FishObjectInventory");
 
@@ -39,11 +47,43 @@ public class InventoryFishes : MonoBehaviour
 
         foreach (GameObject afish in myFishes)
         {
+            afish.GetComponent<myFishSpecificData>().UpdateFresh();
+
             GameObject thisFish = Instantiate(aFishPrefab, Parent.transform) as GameObject;
 
-            thisFish.transform.GetChild(0).GetComponent<TMP_Text>().text = afish.GetComponent<myFishSpecificData>().FishData.commonName;
-            thisFish.transform.GetChild(1).GetComponent<Image>().sprite = afish.GetComponent<myFishSpecificData>().FishData.image;
+            thisFish.transform.GetChild(0).GetComponent<Image>().sprite = afish.GetComponent<myFishSpecificData>().FishData.image;
+            thisFish.transform.GetChild(1).GetComponent<TMP_Text>().text = afish.GetComponent<myFishSpecificData>().FishData.commonName;
 
+            thisFish.transform.GetChild(2).GetComponent<TMP_Text>().text = afish.GetComponent<myFishSpecificData>().currentSize.ToString() + " cm";
+            thisFish.transform.GetChild(3).GetComponent<TMP_Text>().text = afish.GetComponent<myFishSpecificData>().currentAge.ToString() + " y";
+
+            thisFish.GetComponent<SelectFish>().currentFish = afish;
+
+            // si le poisson est trop petit il l'affiche en rouge
+            if (!afish.GetComponent<myFishSpecificData>().haveRequiredSize)
+            {
+                thisFish.transform.GetChild(2).GetComponent<TMP_Text>().color = Color.red;
+            }
+
+            // si le poisson est trop petit il l'affiche en rouge
+            if (!afish.GetComponent<myFishSpecificData>().haveRequiredAge)
+            {
+                thisFish.transform.GetChild(3).GetComponent<TMP_Text>().color = Color.red;
+            }
+
+            // si le poisson est plus frais il met le texte en rouge
+            if (!afish.GetComponent<myFishSpecificData>().isFresh)
+            {
+                thisFish.transform.GetChild(4).GetComponent<TMP_Text>().color = Color.red;
+                thisFish.transform.GetChild(4).GetComponent<TMP_Text>().text = "Non";
+            }                                                     
         }
+    }
+
+    public void ReleaseAFish()
+    {
+        DestroyImmediate(selectedFish);
+
+        UpdateInventory();
     }
 }
