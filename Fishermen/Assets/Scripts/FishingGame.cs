@@ -1,3 +1,12 @@
+/**********************************************
+ * Projet : Fishermen
+ * Nom du fichier : FishingGame.cs
+ * 
+ * Date des derniers changements : 23.05.2022
+ * Version : 1.0
+ * Auteur : Kevin Gacon
+ **********************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +14,7 @@ using UnityEngine.UI;
 
 public class FishingGame : MonoBehaviour
 {
+    // Variables
     public List<FishData> FishesCanBeCaughtInThisArea;
     public GameObject whatIsFish;
 
@@ -30,10 +40,15 @@ public class FishingGame : MonoBehaviour
 
     bool gameIsLaunch;
 
+    //stock une instance qui permet d'appeler le script sur n'importe quel script
     public static FishingGame instance;
 
+    /// <summary>
+    /// Awake est appelé quand l'instance de script est chargée
+    /// </summary>
     private void Awake()
     {
+        //vériife si le script est unique sur la scène
         if (instance != null)
         {
             Debug.LogWarning("Il y a plus d'une instance de FishingGame dans la scène");
@@ -43,6 +58,9 @@ public class FishingGame : MonoBehaviour
         instance = this;
     }
 
+    /// <summary>
+    /// Start est appelé une fois avant update()
+    /// </summary>
     private void Start()
     {
         for (int i = 0; i < NumberOfFishes; i++)
@@ -51,6 +69,9 @@ public class FishingGame : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update est appelé une fois par mise à jour de trame
+    /// </summary>
     void Update()
     {
         if (gameIsLaunch)
@@ -85,24 +106,32 @@ public class FishingGame : MonoBehaviour
             //verrifie si le jauge de complete est à 100%
             if (completeFishingGauge.GetComponent<Slider>().value == 1 || Input.GetKey(KeyCode.O))
             {
+                //détruit un objet FishSwimming
                 Destroy(GameObject.FindGameObjectWithTag("FishSwimming"));
 
+                //décrémente de 1 le nombre de poissons
                 NumberOfFishes--;
 
+                //vérifie s'il reste des poissons
                 if (NumberOfFishes <= 0)
                 {
+                    //désactive le bouton 
                     startFishingButton.GetComponent<Button>().interactable = false;
                 }
 
+                //arrête le mini-jeu
                 stopFishing();
 
+                //ajoute un poisson dans l'inventaire
                 GameObject thisFish = Instantiate(whatIsFish, GameObject.FindGameObjectWithTag("myFishList").transform) as GameObject;
 
             }
         }
     }
 
-    // trouve un nouveau point
+    /// <summary>
+    /// NewPoint est une coroutine qui génére un nouveau point tous les x temps
+    /// </summary>
     IEnumerator NewPoint()
     {
         randomTimerIsActive = true;
@@ -117,7 +146,9 @@ public class FishingGame : MonoBehaviour
         randomTimerIsActive = false;
     }
 
-    //fonction qui verifie si notre icon est sur l'icone du poisson
+    /// <summary>
+    /// OnTriggerVerif est une fonction qui verifie si notre icon est sur l'icone du poisson
+    /// </summary>
     void OnTriggerVerif()
     {
         float fishingRodSliderValue = fishingRodSlider.GetComponent<Slider>().value;
@@ -136,7 +167,9 @@ public class FishingGame : MonoBehaviour
         }
     }
 
-    // fonction qui affiche le HUD et met les valeur à 0
+    /// <summary>
+    /// startFishing est une fonction qui affiche le HUD du mni-jeu et reset les valeur des jauges et permet de jouer
+    /// </summary>
     public void startFishing()
     {
         gameIsLaunch = true;
@@ -153,7 +186,9 @@ public class FishingGame : MonoBehaviour
         fishSlider.GetComponent<Slider>().value = 1;
     }
 
-    //fonction qui arrete la fonctionnalité de pêche
+    /// <summary>
+    /// stopFishing est une fonction qui arrete la fonctionnalité de pêche
+    /// </summary>
     public void stopFishing()
     {
         gameIsLaunch = false;
