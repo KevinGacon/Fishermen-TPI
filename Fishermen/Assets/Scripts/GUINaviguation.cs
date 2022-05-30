@@ -1,3 +1,12 @@
+/**********************************************
+ * Projet : Fishermen
+ * Nom du fichier : GUINaviguation.cs
+ * 
+ * Date des derniers changements : 23.05.2022
+ * Version : 1.0
+ * Auteur : Kevin Gacon
+ **********************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +14,20 @@ using UnityEngine.SceneManagement;
 
 public class GUINaviguation : MonoBehaviour
 {
+    // Variables
+
+    //si l'interface est ouvert ou pas
     public bool isOpen=false;
 
+    //l'objet de l'interface
     public GameObject inventoryInterface;
 
-
+    //stock une instance qui permet d'appeler le script sur n'importe quel script
     public static GUINaviguation instance;
 
+    /// <summary>
+    /// Awake est appelé quand l'instance de script est chargée
+    /// </summary>
     private void Awake()
     {
         if (instance != null)
@@ -23,24 +39,34 @@ public class GUINaviguation : MonoBehaviour
         instance = this;
     }
 
+    /// <summary>
+    /// Start est appelé une fois avant update()
+    /// </summary>
     private void Start()
     {
+        //désactive l'affichage de l'interface de l'inventaire au lancement du script apr sécurité
         inventoryInterface.SetActive(false);
     }
 
-    //fonction qui permet de retourner dans le menu de séléction de zones
+    /// <summary>
+    /// BringToSelectFishingArea est une fonction qui amène le joueur dans le menu de séléction de zones
+    /// </summary>
     public void BringToSelectFishingArea()
     {
         SceneManager.LoadScene("MainGame");
     }
 
-    // amène le joueur sur la scène du marché
+    /// <summary>
+    /// GoToMarket est une fonction qui amène le joueur sur la scène du marché
+    /// </summary>
     public void GoToMarket()
     {
         SceneManager.LoadScene("Market");
     }
 
-    //ouvrir l'inventaire
+    /// <summary>
+    /// OpenInventory est une fonction qui ouvre l'interface de l'inventaire s'il n'est pas ouvert
+    /// </summary>
     public void OpenInventory()
     {
         if (!isOpen)
@@ -55,7 +81,9 @@ public class GUINaviguation : MonoBehaviour
         }
     }
 
-    //fermer l'inventaire
+    /// <summary>
+    /// CloseInventory est une fonction qui ferme l'interface de l'inventaire
+    /// </summary>
     void CloseInventory()
     {
         isOpen = false;
