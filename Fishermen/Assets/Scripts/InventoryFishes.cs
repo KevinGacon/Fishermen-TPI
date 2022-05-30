@@ -1,12 +1,3 @@
-/**********************************************
- * Projet : Fishermen
- * Nom du fichier : InventoryFishes.cs
- * 
- * Date des derniers changements : 23.05.2022
- * Version : 1.0
- * Auteur : Kevin Gacon
- **********************************************/
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,33 +6,20 @@ using TMPro;
 
 public class InventoryFishes : MonoBehaviour
 {
-    // Variables
-
-    //sert à stocker tous les poissons de l'inventaires
     public GameObject[] myFishes;
 
-    //l'objet parent où les boutons des différents poissons doivent être généré
     public GameObject Parent;
-    //le prefab d'un bouton poisson
     public GameObject aFishPrefab;
 
-    //l'objet du poisson sélectionné
     public GameObject selectedFish;
 
-    //l'objet de l'info du poisson
     public GameObject infoFishText;
-    //l'objet du bouton pour relâcher le poisson
     public GameObject releaseButton;
 
-    //stock une instance qui permet d'appeler le script sur n'importe quel script
     public static InventoryFishes instance;
 
-    /// <summary>
-    /// Awake est appelé quand l'instance de script est chargée
-    /// </summary>
     private void Awake()
     {
-        //vériife si le script est unique sur la scène
         if (instance != null)
         {
             Debug.LogWarning("Il y a plus d'une instance de InventoryFishes dans la scène");
@@ -51,12 +29,8 @@ public class InventoryFishes : MonoBehaviour
         instance = this;
     }
 
-    /// <summary>
-    /// UpdateInventory est une fonction qui update l'affichage de l'inventaire
-    /// </summary>
     public void UpdateInventory()
     {
-        //désactive l'affichage du bouton et du texte
         releaseButton.SetActive(false);
         infoFishText.SetActive(false);
 
@@ -106,9 +80,6 @@ public class InventoryFishes : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// ReleaseAFish est une fonction qui permet de relâcher un poisson
-    /// </summary>
     public void ReleaseAFish()
     {
         DestroyImmediate(selectedFish);

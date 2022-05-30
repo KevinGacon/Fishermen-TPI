@@ -1,17 +1,7 @@
-/**********************************************
- * Projet : Fishermen
- * Nom du fichier : FishData.cs
- * 
- * Date des derniers changements : 23.05.2022
- * Version : 1.0
- * Auteur : Kevin Gacon
- **********************************************/
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//permet de créer un nouveau scriptableobject de poisson sur unity
 [CreateAssetMenu(fileName = "FishData", menuName = "New Fish")]
 public class FishData : ScriptableObject
 {
